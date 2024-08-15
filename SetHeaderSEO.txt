@@ -1,0 +1,53 @@
+		//設定頁面OG資訊
+        public string SetHeaderSEO(string pageName, string pageURL, string seoTitle, string seoDescription, string seoImagePath)
+        {
+            string OGContent = "";
+            string titleName = "";
+            string htmlTitle = "";
+
+            string tempDesc = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            string tempImagePath = "https://Domain_Name/Home/img/logo_FB.jpg";
+
+            switch (pageName)
+            {
+                case "Index":
+                    titleName = "首頁";
+                    break;
+                case "News":
+                    titleName = "最新消息";
+                    break;
+                case "NewsContent":
+                    titleName = seoTitle;
+                    tempDesc = seoDescription;
+                    tempImagePath = seoImagePath;
+                    break;
+                case "AboutUs":
+                    titleName = "關於我們";
+                    break;
+                case "Service":
+                    titleName = "顧客服務";
+                    break;
+                case "Collaborate":
+                    titleName = "合作店家";
+                    break;
+            }
+
+            htmlTitle = string.Format("{0} | ComName", titleName);
+
+            OGContent += string.Format("<title>{0}</title>", htmlTitle);
+
+            OGContent += string.Format("<meta name='description' content='{0}'>", tempDesc);
+
+            OGContent += string.Format("<meta itemprop='name' content='{0}'>", htmlTitle);
+            OGContent += string.Format("<meta itemprop='description' content='{0}'>", tempDesc);
+            OGContent += "<meta name='keywords' content='AAAAA,BBBBBB,CCCCC,DDDDDDD' />";
+            OGContent += string.Format("<meta itemprop='image' content='{0}'>", tempImagePath);
+
+            OGContent += string.Format("<meta property='og:title' content='{0}'>", htmlTitle);
+            OGContent += string.Format("<meta property='og:description' content='{0}'>", tempDesc);
+            OGContent += string.Format("<meta property='og:url' content='{0}'>", pageURL);
+            OGContent += string.Format("<meta property='og:image' content='{0}'>", tempImagePath);
+            OGContent += "<meta property='og:type' content='website' />";
+
+            return OGContent;
+        }
